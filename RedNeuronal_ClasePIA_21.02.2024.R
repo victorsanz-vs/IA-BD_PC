@@ -2,6 +2,37 @@
 # fecha: 21-02-2024
 # nombre: Victor Sanz
 
+"
+Se define la funcion Escalon o de Heaviside en
+el intervalo (a,b) como:
+	f(z)=1 si z∈(a,b)
+	f(z)=0
+En otro caso se denota H(a,b).
+Ejemplo:
+Si a=1 y b=3 se tiene que H(2)=1 pues 2∈(1,3).
+Sin embargo H(4)=0 pues no se encuentra en el intervalo (1,3).
+Tomar una muestra aleatoria de tamagno 100 eb el intervalo (1,3).
+Para cada valor de la muestra z calcular:
+	X1(z)=H(1,3)(z)
+	X2(z)=H(3,5)(z)
+	X3(z)=H(5,7)(z)
+	X4(z)=H(7,9)(z)
+Pesos:
+	w0=0
+	w1=0.15
+	w2=0.35
+	w3=0.35
+	w4=0.15
+Calcular:
+	X(z)=wo+w1*X1(z)+w2*X2(z)+w3*X3(z)+w4*X4(z)
+Sea:
+	Y=1	si X>0.5
+	Y=-1	si X>=0.5
+Admitimos que la neurona se activa si Y=1 y no lo hace cuando Y=-1. 
+Evaluar el numero de veces que se activa la neurona de las 100 muestreadas 
+y calcular % de activacion.
+"
+
 # Funcion Heaviside:
 H<-function(a,b,z){
 	y<-0
