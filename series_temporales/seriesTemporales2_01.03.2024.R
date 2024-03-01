@@ -1,124 +1,135 @@
+# nombre: victor sanz arevalo
+# fecha: 01-02-2024
+
 install.packages("tseries")
 install.packages("forecast")
 
 Ibex35<-read.csv(file=file.choose(),header=TRUE,sep=",")
-
 head(Ibex35)
 
-write.csv(Ibex35,file="C:\\Users\\Admin\\Desktop\\Ibex35.csv")
-
-Ibex35<-read.csv(file="C:\\Users\\Admin\\Desktop\\Ibex35.csv")
-
-
 Ibex35<-Ibex35$Ultimo
-Ibex<-as.numeric(Ibex35$Ultimo)
+Ibex<-as.numeric(Ibex35)
 is.numeric(Ibex)
 
 library(tseries)
 library(forecast)
-# Lo tratamos como tserie
-Ibex<-ts(Ibex35,start=c(2019,3),frequency=52)
 
-# Lo representamos
-plot(Ibex,main="Ibex35",col="blue")
+# Tratarlo como serie temporal:
 
-length(Ibex)
+IBEX<-ts(Ibex35,start=c(2019,3),frequency=52)
 
+# Representarlo:
 
-# Instalamos paquete para efectuar modelos AR
+plot(IBEX,main="Ibex35",col="blue")
+length(IBEX)
+
+# Instalar paquete para efectuar modelos AR:
+
 install.packages("dynlm")
-# Libreria
+
+# Cargar libreria:
+
 library(dynlm)
-# Utlizo solo un AR(1)
+
+# Utlizar solo un AR(1):
+
 modelo1<-dynlm(Ibex~L(Ibex),data=Ibex)
 summary(modelo1)
-# Veamos un AR(2)
-# Se observa que el 2 º retardo no es significativo
-# Estudiamos los retardos 1 y 3 y se observa cierta mejoria
-# No encontramos AR mejores
+
+# Probar con un AR(2):
+# Se observa que el 2º retardo no es significativo.
+# Estudiar los retardos 1º y 3º, y se observa cierta mejoria.
+# No hay AR mejores.
 
 modelo3<-dynlm(Ibex~L(Ibex,c(1,3)),data=Ibex)
 summary(modelo3)
 
-# Podemos calcular tendencia y estacionalidad
+# Calcular tendencia y estacionalidad:
 
 modelo4<-dynlm(Ibex~trend(Ibex)+L(Ibex,c(1,3)),data=Ibex)
 summary(modelo4)
 
-# Al introducir la tendencia no se mejora
-# Por tanto conviene eliminarla
-
-# Estudiamos la componente estacional
+# Al introducir la tendencia no se observa mejoria:
+# Conviene eliminarla. Estudiar la componente estacional
 
 modelo6<-dynlm(Ibex~trend(Ibex)+season(Ibex)+L(Ibex,c(1,3)),data=Ibex)
 summary(modelo6)
 
 # Se observa que algunas pocas semanas ejercen
-# estacionalidad pero empeorando el modelo
-# Por tanto en este caso no debe tenerse encuenta ni
-# la tendencia ni la componentge estacional
-# Por lo que nos quedamos con el 3 º modelo
+# estacionalidad pero empeorando el modelo.
+# En este caso, no debe tenerse encuenta ni
+# la tendencia ni la componente estacional
+# Escoger el modelo3.
 
 summary(modelo3)
-# Buscamos modelo Arima(p,q) para poder efectuar pronosticos
-#  Sobre la serie temporal 
 
-# Estudiamos si la serie estacionaria
-# Para ello ensayamos el test df
+# Buscar modelo ARIMA(p,q) para poder efectuar pronosticos
+# Sobre la serie temporal. 
+# Estudiar si la serie es estacionaria.
+# Para ello ensayar el test df.
 
 adf.test(Ibex,alternative="stationary")
-# En este test Ho: No estacionaria
-# Frente H1 : Estacionaria
-# El p'-vañlor=0,4729>0.05=> Ho
-# Deducimos que no es estacionaria
-# Tenemos 2 alternativas
-#1) Suavizar la serie con logaritmos
-#2) Diferenciar la serie hasta consehuir estacionariedad
-# 1) Alternativa
+
+# H0: No estacionaria.
+# H1: Estacionaria.
+# El p-value = 0.0.4172>0.05 => H0.
+# No es estacionaria.
+# Existen dos alternativas:
+# 	1) Suavizar la serie con logaritmos.
+#	2) Diferenciar la serie hasta conseguir estacionariedad.
+# Alternativa 1:
+
 Ibexlog<-log(Ibex)
 plot(Ibexlog,main="Serie logaritmos",col="blue")
-# Aplicamos el test df a la serie de logaritmos
-# Con un p-valor=0.4574>=0.05=> Aceptar Ho. Por lo 
-# que la seri logaritmica no es estacionaria
-# 2) Alternativa. Diferenciar
-# 1º diferencia
-diferenciaprimera<-diff(Ibex)
-# La representamos
 
-plot(diferenciaprimera,main="Serie primera diferencia",col="blue")
-# Aplico el test de df
+# Aplicar el test df a la serie de logaritmos.
+# Con un p-value = 0.4172>=0.05 => Aceptar H0. 
+# Por lo que la serie logaritmica NO es estacionaria.
+
+# Alternativa 2: Diferenciar.
+# 1ª Diferencia:
+
+diferenciaprimera<-diff(Ibex)
+
+# Representarlo:
+
+plot(diferenciaprimera,main="Serie Primera Diferencia",col="blue")
+
+# Aplicar el test df:
 
 adf.test(diferenciaprimera,alternative="stationary")
 
-# Con un p-valor=0.01 se asegura que aceptamos
-# H1 por lo que ja serie diferenciada ya es estacionaria
+# Con un p-value = 0.01 => Aceptar H1.
+# La serie diferenciada ya es estacionaria.
+# Estimar los p y q del proceso ARIMA.
 
-# Estimacion de los p,q del proceso Arima
+# Para ello representar las funciones acf pacf:
 
-# Para ello representamos las funciones acf pacf
 par(mfrow=c(1,2))
 acf(ts(diferenciaprimera,frequency=1))
 pacf(ts(diferenciaprimera,frequency=1))
 
-# Planteamos el modelo arima
+# Plantear el modelo ARIMA:
 
 AR<-arima(Ibex,order=c(0,1,1))
-AR
+print(AR)
 tsdiag(AR)
 
-# Test L-B para validar el modelo
+# Test L-B para validar el modelo:
 
 Box.test(residuals(AR),type="Ljung-Box")
 
-# El p-valor =0.9261>=0.05=> Se acepta el modelo
+# El p-value = 0.9247 >= 0.05 => Se acepta el modelo.
 
-# Errores
+# Errores:
+
 error<-residuals(AR)
 plot(density(error))
 
-# Pronosticos
+# Pronosticos:
+
 pronosticos<-forecast(AR, h=4)
-pronosticos
+print(pronosticos)
 plot(pronosticos)
 
 
