@@ -1,4 +1,0 @@
-# nombre: Victor Sanz Arevalo
-# curso: 2023-2024
-# centro: Campus Digital FP
-# modulo: Big Data Aplicado

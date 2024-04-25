@@ -1,4 +1,0 @@
-# nombre: Victor Sanz Arevalo
-# curso: 2023-2024
-# centro: Campus Digital FP
-# modulo: Sistemas de Aprendizaje Automatico
