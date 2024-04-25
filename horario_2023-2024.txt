@@ -1,9 +1,0 @@
-# curso: 2023-2024
-# nombre: victor sanz arevalo
-# fecha: 07-03-2024
-				DESCANSO
-# LUNES		=>	PIA;PIA;	MIA;MIA;
-# MARTES	=>	PIA;PIA;	PIA;PIA;
-# MIERCOLES	=>	BDA;SBD;	SBD;SBD;	
-# JUEVES	=>	PIA;PIA;	SAA;SAA;
-# VIERNES	=>	BDA;BDA;	BDA;
