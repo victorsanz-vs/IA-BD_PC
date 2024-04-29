@@ -1,0 +1,9 @@
+# Curso: 2023-2024
+# Combre: Victor Sanz Arevalo
+# Modulo: Sistemas de Aprendizaje Automatico
+"""
+Descripcion: construir y aplicar modelos computacionales que puedan 
+aprender de los datos sin estar programados explicitamente, permitiendo 
+la toma de decisiones automatizadas y la prediccion de resultados 
+basados en patrones identificados en los datos.
+"""

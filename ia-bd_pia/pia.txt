@@ -1,0 +1,9 @@
+# Curso: 2023-2024
+# Combre: Victor Sanz Arevalo
+# Modulo: Programacion de Inteligencia Artificial
+"""
+Descripcion: desarrollar algoritmos y aplicaciones utilizando tecnicas y 
+herramientas de inteligencia artificial, como aprendizaje automatico y 
+procesamiento de lenguaje natural, para resolver problemas complejos y 
+tomar decisiones automatizadas.
+"""

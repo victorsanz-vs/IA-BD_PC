@@ -1,0 +1,9 @@
+# Curso: 2023-2024
+# Combre: Victor Sanz Arevalo
+# Modulo: Big Data Aplicado
+"""
+Descripcion: practicar y aplicar tecnicas avanzadas para el procesamiento, analisis 
+y extraccion de informacion valiosa a partir de grandes volumenes de datos.
+"""
+
+
