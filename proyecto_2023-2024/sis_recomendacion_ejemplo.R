@@ -1,6 +1,6 @@
 # fecha: 07-05-2024
 # nombre: Victor Sanz Arevalo
-# --- Recomendador de peliculas ---
+# --- Recomendador de libros ---
 
 # Cargar datasets:
 
