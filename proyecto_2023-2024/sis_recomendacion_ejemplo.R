@@ -1,6 +1,5 @@
 # fecha: 07-05-2024
 # nombre: Victor Sanz Arevalo
-# url: https://anderfernandez.com/blog/programar-sistema-recomendacion-r/
 # --- Recomendador de peliculas ---
 
 # Cargar datasets:
