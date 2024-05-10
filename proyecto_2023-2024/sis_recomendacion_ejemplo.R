@@ -8,6 +8,8 @@ ratings = read.csv(file.choose(), sep=";")
 books = read.csv(file.choose(), sep=";")
 users = read.csv(file.choose(), sep=";")
 
+##########################################################################
+# Analisis preliminar de todos los datos:
 # Mostrar los datos del dataset "books":
 
 install.packages("dplyr")
@@ -78,4 +80,37 @@ ratings_sum = ratings %>%
 	count() 
 
 summary(ratings_sum$n)
-	
+
+"""
+El 75% de los usuarios ha dado 3 recomendaciones o menos. 
+Quitar a estos usuarios para dejar solamente a los mas 
+significativos.
+"""
+
+user_index = ratings_sum$User.ID[ratings_sum$n>4]
+
+users = users[users$User.ID %in% user_index, ]
+ratings = ratings[ratings$User.ID %in% user_index, ]
+books = books[books$ISBN %in% ratings$ISBN,]
+
+rm(ratings_sum, user_index)
+
+##########################################################################
+
+# Sistema de recomendacion basado en el contenido en R:
+"""
+Calcular la disimilitud entre libros, utilizando las 
+caracteristicas de los productos para encontrar productos 
+similares.
+Existen distintas caracteristicas para los libros:
+	titulo del libro, agno, autor, editorial y categoria.
+?Son relevantes
+- El titulo del libro no parece que sirva para recomendarlo.
+- Podriamos considerar algun tipo de descripcion.
+- El agno puede llegar a ser irrelevante (solo si se 
+	cumplen ciertas condiciones).
+- Escoger las variables Autor, Editorial y Categoria.
+?Similitud entre dos productos en base a unas categorias.
+- Calcular distancias
+
+"""	
