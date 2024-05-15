@@ -1,0 +1,48 @@
+Asignación de variables:
+
+<-: Asigna un valor a una variable. Por ejemplo: x <- 10.
+Operaciones aritméticas:
+
++, -, *, /: Suma, resta, multiplicación y división.
+^ o **: Potenciación.
+sqrt(): Raíz cuadrada.
+Funciones básicas:
+
+print(): Imprime valores en la consola.
+help(): Accede a la documentación de una función.
+?: Accede a la documentación de una función o paquete.
+Estructuras de datos:
+
+Vectores: c(). Por ejemplo: mi_vector <- c(1, 2, 3, 4, 5).
+Listas: list(). Por ejemplo: mi_lista <- list(a = 1, b = "hola", c = TRUE).
+Matrices: matrix(). Por ejemplo: mi_matriz <- matrix(1:9, nrow = 3, ncol = 3).
+Dataframes: data.frame(). Por ejemplo: mi_dataframe <- data.frame(x = c(1, 2, 3), y = c("a", "b", "c")).
+Operaciones con datos:
+
+str(): Muestra la estructura de un objeto.
+summary(): Proporciona un resumen estadístico de un objeto.
+head() y tail(): Muestra las primeras o últimas filas de un dataframe.
+Funciones estadísticas básicas:
+
+mean(): Calcula la media.
+median(): Calcula la mediana.
+sd(): Calcula la desviación estándar.
+var(): Calcula la varianza.
+Control de flujo:
+
+if(), else if(), else: Para realizar operaciones condicionales.
+for(): Para realizar bucles.
+while(): Para realizar bucles mientras se cumpla una condición.
+Gráficos básicos:
+
+plot(): Crea un gráfico de dispersión.
+hist(): Crea un histograma.
+boxplot(): Crea un diagrama de caja y bigotes.
+Importación y exportación de datos:
+
+read.csv(), read.table(): Importa datos desde un archivo CSV o de texto.
+write.csv(), write.table(): Exporta datos a un archivo CSV o de texto.
+Paquetes:
+
+install.packages(): Instala un paquete desde CRAN.
+library(): Carga un paquete instalado.
